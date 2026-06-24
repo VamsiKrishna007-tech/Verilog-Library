@@ -1,0 +1,9 @@
+Problem Description:
+
+Input arrives one bit per clock cycle, synchronous to posedge clk
+
+Output must be a registered pulse — high for exactly 1 cycle, appears the cycle after the third bit is seen
+
+Overlapping matches are valid — the last 1 of one match can start the next
+
+Reset is active-high asynchronous
