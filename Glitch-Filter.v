@@ -1,3 +1,4 @@
+When sensor_in goes high and stays high for two cycles or more, the output sensor_out should transition to high. Similarly, when sensor_in goes low and remains low for two cycles or more, the output should transition to low. Any single-cycle pulse (either high or low) should be ignored. The circuit operates on a 100 MHz system clock and includes an active-low reset signal. Write a Verilog RTL to filter out the glitches
 module glitch_filter ( input sensor_in, clk, rst,
                        output reg sensor_out);
 
