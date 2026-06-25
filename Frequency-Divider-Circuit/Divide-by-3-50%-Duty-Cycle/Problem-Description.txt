@@ -1,0 +1,5 @@
+Write a Verilog code for a frequency divider by 3. The duty cycle of the output clock should be 50%.
+
+The circuit should have an input for the input clock and the output should be the clock frequency divided by "3".
+
+On reset=0, the circuit should get initialized and the output should be 0.
