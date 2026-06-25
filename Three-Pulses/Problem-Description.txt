@@ -1,0 +1,18 @@
+Design a circuit that takes two serial inputs x_i and y_i and produces an output p_o.
+
+p_o is asserted for exactly one clock cycle whenever a pulse on x_i is seen, provided that exactly three pulses on y_i have occurred since the last pulse on x_i (or since reset, if x_i has not yet been seen).
+
+All flip-flops must be positive-edge triggered with asynchronous active-high reset.
+
+ 
+Edge Cases
+
+•     If fewer than 3 y_i pulses arrive before x_i  →  p_o stays LOW
+
+•     If more than 3 y_i pulses arrive  →  counter saturates, p_o does NOT fire
+
+•     If x_i and y_i pulse on the SAME cycle  →  y_i counts toward the NEXT window
+
+•     If reset fires mid-count  →  counter immediately clears to 0, p_o stays LOW
+
+•     p_o must deassert the very next cycle (it is NOT held)
