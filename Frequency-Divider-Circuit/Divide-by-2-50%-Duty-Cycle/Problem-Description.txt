@@ -1,0 +1,5 @@
+Write a verilog code for frequency divider by 2. Duty cycle of output clock should be 50%.
+
+Circuit should have input for the input clock and output should be clock frequency divided by "2".
+
+On reset=0, circuit should get initialized and output should be 0.
