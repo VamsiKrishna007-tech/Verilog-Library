@@ -1,0 +1,15 @@
+Design and implement a Verilog module that divides an input clock frequency by 4 and produces an output clock with a 50% duty cycle.
+
+The design should use a synchronous counter-based approach and must satisfy the following requirements:
+
+The module shall accept a single input clock input_clk.
+
+The module shall generate an output clock output_clk whose frequency is one-fourth of the input clock.
+
+The duty cycle of output_clk must be exactly 50%.
+
+The design shall include an active-low asynchronous reset (rst).
+
+When rst = 0, the counter and output clock must be initialized to 0.
+
+On every rising edge of input_clk, the internal counter should increment and control the toggling of output_clk.
