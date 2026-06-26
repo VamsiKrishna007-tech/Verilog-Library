@@ -1,0 +1,91 @@
+Problem Description
+
+Design a rising edge detector that monitors a 1-bit input signal in. When in transitions from 0 to 1, the output pulse must go high for exactly one clock cycle. pulse must return to 0 on the following cycle even if in remains high. pulse is combinational — it fires in the same cycle the transition is detected, not one cycle later. When rst is asserted, all registers clear to 0.
+
+The key is understanding non-blocking assignment (<=).
+
+Consider this code:
+
+always @(posedge clk) begin
+    in_delayed <= in;
+end
+
+At the clock edge, Verilog does not immediately update in_delayed.
+
+Instead:
+
+It reads all RHS values (in)
+Schedules updates
+Updates registers at the end of the time step
+Example
+
+Before clock edge:
+
+Signal	Value
+in	1
+in_delayed	0
+
+At the rising clock edge:
+
+in_delayed <= in;
+
+Verilog sees:
+
+RHS = 1
+Schedule: in_delayed will become 1
+
+But during the evaluation of:
+
+assign pulse = in & ~in_delayed;
+
+the old value of in_delayed is still visible:
+
+in         = 1
+in_delayed = 0
+
+Therefore:
+
+pulse = 1 & ~0
+      = 1
+
+So the pulse is generated.
+
+Only after the clock event completes does:
+
+in_delayed = 1
+
+take effect.
+
+Timeline:
+
+Suppose in changes from 0 to 1 just before a clock edge.
+
+Before edge
+in         = 1
+in_delayed = 0
+pulse      = 1
+Clock edge occurs
+in_delayed <= in;
+
+Update is scheduled.
+
+Current visible values are still:
+
+in         = 1
+in_delayed = 0
+pulse      = 1
+End of time step
+
+Register updates:
+
+in_delayed = 1
+
+Now:
+
+in         = 1
+in_delayed = 1
+pulse      = 0
+
+because:
+
+1 & ~1 = 0
